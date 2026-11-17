@@ -133,6 +133,15 @@ newman run verification-output/foodgram.postman_collection.json --env-var baseUr
 
 ## Публикация и CI/CD
 
+Опубликованные образы:
+
+- [landlordme/foodgram-backend](https://hub.docker.com/r/landlordme/foodgram-backend)
+- [landlordme/foodgram-frontend](https://hub.docker.com/r/landlordme/foodgram-frontend)
+- [landlordme/foodgram-nginx](https://hub.docker.com/r/landlordme/foodgram-nginx)
+
+Доступны теги `latest` и `3c512deafcbacc7578920bd024e834be3e37af36`.
+Для запуска этих образов укажите `DOCKERHUB_USERNAME=landlordme` в `.env`.
+
 Workflow `.github/workflows/foodgram.yml` выполняет PEP 8, проверки Django и
 миграций, тесты на PostgreSQL, 157 запросов Postman, сборку интерфейса и
 проверку Docker-стека, документации и статики. Затем публикует три образа в

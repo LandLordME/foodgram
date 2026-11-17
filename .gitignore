@@ -140,3 +140,7 @@ dmypy.json
 
 static/
 media/
+collected_static/
+newman/
+verification-output/
+LOCAL_ACCESS.txt

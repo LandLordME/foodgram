@@ -1,6 +1,6 @@
 # Проверка Фудграма
 
-Дата: 17 ноября 2026 года.
+Дата: 18 ноября 2026 года.
 
 | Проверка | Результат |
 | --- | --- |
@@ -20,7 +20,8 @@
 | Вход администратора, список/создание/редактирование рецептов, пользователи и ингредиенты | HTTP 200 |
 | Демонстрационные данные | 3 пользователя с разными правами, 7 рецептов |
 | Docker Hub | Опубликованы backend, frontend и nginx в аккаунте landlordme |
-| Теги образов | latest и 3c512deafcbacc7578920bd024e834be3e37af36; доступны публично, digest каждого образа совпадает между тегами |
+| Автоматическая публикация | GitHub Actions успешно вошёл в Docker Hub и опубликовал все три образа |
+| Теги образов | latest и SHA проверенных коммитов; доступны публично |
 | Содержимое образа backend | Локальные .env, SQLite-база и LOCAL_ACCESS.txt отсутствуют |
 
 Исходная коллекция Postman не изменена. В её проверке поиска используется
@@ -35,15 +36,18 @@
 
 Контейнерный запуск использует PostgreSQL. Сценарные тесты и полная коллекция
 Postman выполнены на отдельных локальных SQLite-базах и на PostgreSQL в
-[GitHub Actions](https://github.com/LandLordME/foodgram/actions/runs/44164103061).
-Там же прошли сборка фронтенда и проверка полного Docker-стека.
+[GitHub Actions](https://github.com/LandLordME/foodgram/actions/runs/44174462254).
+Там же прошли сборка фронтенда, проверка полного Docker-стека и автоматическая
+публикация образов.
 
 Образы опубликованы в Docker Hub:
 [backend](https://hub.docker.com/r/landlordme/foodgram-backend),
 [frontend](https://hub.docker.com/r/landlordme/foodgram-frontend),
 [nginx](https://hub.docker.com/r/landlordme/foodgram-nginx).
 
-Для автоматической публикации следующих версий требуется добавить секрет
-DOCKERHUB_TOKEN и переменную DOCKERHUB_USERNAME в GitHub Actions.
+Для автоматической публикации настроены секрет `DOCKERHUB_TOKEN` и переменная
+`DOCKERHUB_USERNAME=landlordme` в GitHub Actions. Токен `foodgram-ci` имеет права
+Read/Write и действует до 17 декабря 2026 года; после этой даты его необходимо
+заменить в Docker Hub и секрете репозитория.
 Деплой на внешний сервер ещё не выполнен: адрес сервера и доступ к нему
 не предоставлены. Наличие workflow-файла не считается выполненным деплоем.

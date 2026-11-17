@@ -139,8 +139,14 @@ newman run verification-output/foodgram.postman_collection.json --env-var baseUr
 - [landlordme/foodgram-frontend](https://hub.docker.com/r/landlordme/foodgram-frontend)
 - [landlordme/foodgram-nginx](https://hub.docker.com/r/landlordme/foodgram-nginx)
 
-Доступны теги `latest` и `3c512deafcbacc7578920bd024e834be3e37af36`.
+Доступны теги `latest` и SHA проверенных коммитов.
 Для запуска этих образов укажите `DOCKERHUB_USERNAME=landlordme` в `.env`.
+
+В репозитории `LandLordME/foodgram` настроены `DOCKERHUB_USERNAME=landlordme`
+и секрет `DOCKERHUB_TOKEN`. [Проверка автоматической публикации](https://github.com/LandLordME/foodgram/actions/runs/44174462254)
+успешно выполнила тесты и отправила все три образа. Токен `foodgram-ci` имеет
+права Read/Write и действует до 17 декабря 2026 года. Для продолжения публикации
+после этой даты обновите токен Docker Hub и значение секрета в GitHub.
 
 Workflow `.github/workflows/foodgram.yml` выполняет PEP 8, проверки Django и
 миграций, тесты на PostgreSQL, 157 запросов Postman, сборку интерфейса и
@@ -161,8 +167,9 @@ Docker Hub с тегами `latest` и SHA коммита и при включё
 | Secret | `SSH_KEY` | Закрытый ключ для деплоя |
 | Secret | `SSH_KNOWN_HOSTS` | Проверенный публичный ключ SSH-сервера |
 
-До настройки Docker Hub workflow выполняет проверки, пропуская публикацию и
-деплой. Для деплоя используется GitHub Environment `production`.
+В новом репозитории до настройки Docker Hub workflow выполняет проверки,
+пропуская публикацию и деплой. Для деплоя используется GitHub Environment
+`production`.
 
 На сервере должны быть Docker Engine и Compose. В `~/foodgram/.env` задаются
 отдельные production-секреты, `DOCKERHUB_USERNAME`, домен/IP в `ALLOWED_HOSTS`

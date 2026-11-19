@@ -21,8 +21,7 @@ python scripts/bootstrap_env.py --demo
 docker compose up -d --build --wait
 ```
 
-На текущем компьютере `.env` уже подготовлен. В Windows можно открыть
-`Start-Foodgram.cmd`. Повторный запуск обновляет сборку и сохраняет данные.
+
 
 | Страница | Адрес по умолчанию |
 | --- | --- |
